@@ -1,0 +1,84 @@
+commit 5b8a90857ad356566419c933b2bcfa1dcceb0f6b
+Author: MrFlashMode <mr_flashmode@mail.ru>
+Date:   Sat Jul 29 07:54:40 2023 +0300
+
+    some graphics tweaks
+
+diff --git a/src/Layers/xrRender/xrRender_console.cpp b/src/Layers/xrRender/xrRender_console.cpp
+index 19cf561..4df45a4 100644
+--- a/src/Layers/xrRender/xrRender_console.cpp
++++ b/src/Layers/xrRender/xrRender_console.cpp
+@@ -16,7 +16,7 @@ xr_token qpreset_token [ ] = {
+ 	{0, 0}
+ };
+ 
+-u32 ps_r_ssao_mode = 2;
++u32 ps_r_ssao_mode = 1;
+ xr_token qssao_mode_token [ ] = {
+ 	{"disabled", 0},
+ 	{"default", 1},
+@@ -42,7 +42,7 @@ xr_token sunshafts_mode_token [ ] = {
+ 	{0, 0}
+ };
+ 
+-u32 ps_smaa_quality = 3;
++u32 ps_smaa_quality = 4;
+ xr_token smaa_quality_token[] = {
+ 	{ "off", 0 },
+ 	{ "low", 1 },
+@@ -102,7 +102,7 @@ xr_token qminmax_sm_token [ ] = {
+ 	{0, 0}
+ };
+ 
+-u32 ps_r_screenshot_token = 0;
++u32 ps_r_screenshot_token = 1;
+ xr_token screenshot_mode_token [ ] = {
+ 	{ "jpg", 0 },
+ 	{ "png", 1 },
+@@ -147,7 +147,7 @@ float ps_r__ssaDISCARD = 3.5f; //RO
+ float ps_r__ssaDONTSORT = 32.f; //RO
+ float ps_r__ssaHZBvsTEX = 96.f; //RO
+ 
+-int ps_r__tf_Anisotropic = 8;
++int ps_r__tf_Anisotropic = 16;
+ float ps_r__tf_Mipbias = 0.0f;
+ // R1
+ float ps_r1_ssaLOD_A = 64.f;
+@@ -958,7 +958,7 @@ void xrRender_initconsole()
+ 	CMD4(CCC_Float, "r2_ls_bloom_kernel_b", &ps_r2_ls_bloom_kernel_b, 0.01f, 1.f);
+ 	CMD4(CCC_Float, "r2_ls_bloom_threshold", &ps_r2_ls_bloom_threshold, 0.f, 1.f);
+ 	CMD4(CCC_Float, "r2_ls_bloom_speed", &ps_r2_ls_bloom_speed, 0.f, 100.f);
+-	CMD3(CCC_Mask, "r2_ls_bloom_fast", &ps_r2_ls_flags, R2FLAG_FASTBLOOM);
++	CMD3(CCC_Mask, "r2_ls_bloom_fast", &ps_r2_ls_flags, R2FLAG_FASTBLOOM, TRUE);
+ 	CMD4(CCC_Float, "r2_ls_dsm_kernel", &ps_r2_ls_dsm_kernel, .1f, 3.f);
+ 	CMD4(CCC_Float, "r2_ls_psm_kernel", &ps_r2_ls_psm_kernel, .1f, 3.f);
+ 	CMD4(CCC_Float, "r2_ls_ssm_kernel", &ps_r2_ls_ssm_kernel, .1f, 3.f);
+@@ -971,8 +971,8 @@ void xrRender_initconsole()
+ 	CMD3(CCC_Mask, "r__actor_shadow", &ps_actor_shadow_flags, RFLAG_ACTOR_SHADOW); //Swartz: actor shadow
+ 
+ 	//- Mad Max
+-	CMD4(CCC_Float, "r2_gloss_factor", &ps_r2_gloss_factor, .001f, 10.f);
+-	CMD4(CCC_Float, "r2_gloss_min", &ps_r2_gloss_min, .001f, 1.0f);
++	CMD4(CCC_Float, "r2_gloss_factor", &ps_r2_gloss_factor, .0f, 10.f);
++	CMD4(CCC_Float, "r2_gloss_min", &ps_r2_gloss_min, .0f, 1.0f);
+ 	//- Mad Max
+ 
+ 	CMD3(CCC_Token, "r_screenshot_mode", &ps_r_screenshot_token, screenshot_mode_token);
+@@ -1006,7 +1006,7 @@ void xrRender_initconsole()
+ 	CMD4(CCC_Float, "r2_sun_lumscale_hemi", &ps_r2_sun_lumscale_hemi, 0.0, +3.0);
+ 	CMD4(CCC_Float, "r2_sun_lumscale_amb", &ps_r2_sun_lumscale_amb, 0.0, +3.0);
+ 
+-	CMD3(CCC_Mask, "r2_aa", &ps_r2_ls_flags, R2FLAG_AA);
++	CMD3(CCC_Mask, "r2_aa", &ps_r2_ls_flags, R2FLAG_AA, TRUE);
+ 	CMD4(CCC_Float, "r2_aa_kernel", &ps_r2_aa_kernel, 0.3f, 0.7f);
+ 	CMD4(CCC_Float, "r2_mblur", &ps_r2_mblur, 0.0f, 1.0f);
+ 
+@@ -1050,7 +1050,7 @@ void xrRender_initconsole()
+ 	
+ 	//////////other
+ 	CMD3(CCC_Mask, "r2_water_reflections", &ps_r2_anomaly_flags, R2_AN_FLAG_WATER_REFLECTIONS);
+-	CMD3(CCC_Mask, "r2_mblur_enabled", &ps_r2_anomaly_flags, R2_AN_FLAG_MBLUR);
++	CMD3(CCC_Mask, "r2_mblur_enabled", &ps_r2_anomaly_flags, R2_AN_FLAG_MBLUR, TRUE);
+ 	CMD3(CCC_Mask, "r__lens_flares", &ps_r2_anomaly_flags, R2_AN_FLAG_FLARES);
+ 	CMD3(CCC_Token, "r2_smaa", &ps_smaa_quality, smaa_quality_token);
+ 	CMD3(CCC_Mask,		"r2_gi",				&ps_r2_ls_flags,			R2FLAG_GI);
