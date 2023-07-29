@@ -1,0 +1,22 @@
+commit 878362df6d33bb168c1c826f143ec33c29222bf0
+Author: MrFlashMode <mr_flashmode@mail.ru>
+Date:   Sat Jul 29 07:25:24 2023 +0300
+
+    disable console in main menu
+
+diff --git a/src/xrGame/MainMenu.cpp b/src/xrGame/MainMenu.cpp
+index ef05e45..1d8f6ef 100644
+--- a/src/xrGame/MainMenu.cpp
++++ b/src/xrGame/MainMenu.cpp
+@@ -356,11 +356,6 @@ void CMainMenu::IR_OnKeyboardPress(int dik)
+ {
+ 	if (!IsActive()) return;
+ 
+-	if (is_binded(kCONSOLE, dik))
+-	{
+-		Console->Show();
+-		return;
+-	}
+ 	if (is_binded(kSCREENSHOT, dik))
+ 	{
+ 		Render->Screenshot();
