@@ -1,0 +1,33 @@
+commit 00d6d10c53ec9f08bf631c20807d8b75173e424c
+Author: MrFlashMode <mr_flashmode@mail.ru>
+Date:   Sat Jul 29 07:17:50 2023 +0300
+
+    add disable show console when debug is OFF
+
+diff --git a/src/xrGame/Level_input.cpp b/src/xrGame/Level_input.cpp
+index 3d06b55..917a4e6 100644
+--- a/src/xrGame/Level_input.cpp
++++ b/src/xrGame/Level_input.cpp
+@@ -223,9 +223,19 @@ void CLevel::IR_OnKeyboardPress(int key)
+ 		break;
+ 
+ 	case kCONSOLE:
+-		Console->Show();
+-		return;
+-		break;
++    {
++        // Aboba 29/07/23: Disable console when debug is OFF
++        if (strstr(Core.Params, "-dbg"))
++        {
++            Console->Show();
++        }
++        // Aboba: End
++        else
++        {
++            return;
++        }
++    }
++    break;
+ 
+ 	case kQUIT:
+ 		{
