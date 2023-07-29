@@ -223,19 +223,9 @@ void CLevel::IR_OnKeyboardPress(int key)
 		break;
 
 	case kCONSOLE:
-    {
-        // Aboba 29/07/23: Disable console when debug is OFF
-        if (strstr(Core.Params, "-dbg"))
-        {
-            Console->Show();
-        }
-        // Aboba: End
-        else
-        {
-            return;
-        }
-    }
-    break;
+		Console->Show();
+		return;
+		break;
 
 	case kQUIT:
 		{
