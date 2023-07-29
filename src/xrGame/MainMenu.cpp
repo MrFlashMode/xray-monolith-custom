@@ -356,6 +356,11 @@ void CMainMenu::IR_OnKeyboardPress(int dik)
 {
 	if (!IsActive()) return;
 
+	if (is_binded(kCONSOLE, dik))
+	{
+		Console->Show();
+		return;
+	}
 	if (is_binded(kSCREENSHOT, dik))
 	{
 		Render->Screenshot();
