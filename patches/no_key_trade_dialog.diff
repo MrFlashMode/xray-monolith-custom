@@ -1,0 +1,18 @@
+diff --git a/src/xrGame/ui/UITalkWnd.cpp b/src/xrGame/ui/UITalkWnd.cpp
+index f9e89de..f4ab72d 100644
+--- a/src/xrGame/ui/UITalkWnd.cpp
++++ b/src/xrGame/ui/UITalkWnd.cpp
+@@ -377,13 +377,6 @@ bool CUITalkWnd::OnKeyboardAction(int dik, EUIMessages keyboard_action)
+ 				return true;
+ 			}
+ 		}
+-		else if (is_binded(kSPRINT_TOGGLE, dik))
+-		{
+-			if (UITalkDialogWnd->mechanic_mode)
+-				SwitchToUpgrade();
+-			else
+-				SwitchToTrade();
+-		}
+ 	}
+ 
+ 	return inherited::OnKeyboardAction(dik, keyboard_action);
